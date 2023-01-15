@@ -2,7 +2,6 @@
 
 Projeto simples que implementa um CRUD de Livros. Foi feito usando Laravel Sail, uma interface de linha de comando leve para interagir com o ambiente de
 desenvolvimento Docker padrão e Laravel Sanctum para autenticação.
-rge, robust applications.
 
 ## Como executar
 
