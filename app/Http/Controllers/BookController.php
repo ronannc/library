@@ -15,72 +15,61 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return response( Book::simplePaginate() );
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBookRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBookRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * @param \App\Http\Requests\StoreBookRequest $request
      *
-     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function store( StoreBookRequest $request )
     {
-        //
+        $book = Book::create( $request->all() );
+        
+        return response( [
+                             'success' => true,
+                             'message' => 'Successfully registered book!',
+                             'data'    => $book->toArray()
+                         ], 201 );
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Book $book)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBookRequest  $request
-     * @param  \App\Models\Book  $book
+     * @param \App\Http\Requests\UpdateBookRequest $request
+     * @param \App\Models\Book                     $book
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update( UpdateBookRequest $request, Book $book )
     {
-        //
+        $book->update( $request->all() );
+        
+        return response( [
+                             'success' => true,
+                             'message' => 'Successfully updated book!',
+                             'data'    => $book->toArray()
+                         ] );
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Book  $book
+     * @param \App\Models\Book $book
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy( Book $book )
     {
-        //
+        $book->delete();
+        
+        return response( [
+                             'success' => true,
+                             'message' => 'Successfully deleted book!',
+                             'data'    => []
+                         ] );
     }
 }

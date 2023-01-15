@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdateBookRequest extends FormRequest
 {
@@ -13,9 +15,9 @@ class UpdateBookRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
-
+    
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +26,20 @@ class UpdateBookRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'  => 'required|max:255',
+            'isbn'  => 'required|max:13|alpha_num',
+            'value' => 'required|decimal:2'
         ];
+    }
+    
+    public function failedValidation( Validator $validator )
+    {
+        throw new HttpResponseException(
+            response()->json( [
+                                  'success' => false,
+                                  'message' => 'Validation errors',
+                                  'data'    => $validator->errors()
+                              ] )
+        );
     }
 }
