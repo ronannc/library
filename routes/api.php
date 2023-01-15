@@ -16,4 +16,4 @@ Route::middleware( 'auth:sanctum' )->group( function () {
     Route::resource( 'books', \App\Http\Controllers\BookController::class )->except( [ 'create', 'edit', 'show' ] );
 } );
 Route::post( '/auth/token', [ \App\Http\Controllers\UserController::class, 'auth' ] );
-Route::post( '/user', [ \App\Http\Controllers\UserController::class, 'store' ] );
+Route::post( '/users', [ \App\Http\Controllers\UserController::class, 'store' ] );
