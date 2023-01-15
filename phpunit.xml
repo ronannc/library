@@ -5,6 +5,9 @@
          colors="true"
 >
     <testsuites>
+        <testsuite name="feature-book">
+            <directory suffix=".php">./tests/Feature/Book</directory>
+        </testsuite>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
@@ -18,13 +21,6 @@
         </include>
     </coverage>
     <php>
-        <env name="APP_ENV" value="testing"/>
-        <env name="BCRYPT_ROUNDS" value="4"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="DB_DATABASE" value="testing"/>
-        <env name="MAIL_MAILER" value="array"/>
-        <env name="QUEUE_CONNECTION" value="sync"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="DB_DATABASE" value="library"/>
     </php>
 </phpunit>
