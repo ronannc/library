@@ -6,11 +6,11 @@ desenvolvimento Docker padrão e Laravel Sanctum para autenticação.
 ## Como executar
 
 - Clone o projeto: https://github.com/ronannc/library.git
-- Dentro do diretorio **library** exucuta o comando: ```./vendor/bin/sail up -d```
+- Dentro do diretório **library** executa o comando: ```./vendor/bin/sail up -d```
 
-Pronto, agora a API CRUD de livros ja esta disponível para uso.
+Pronto, agora a API CRUD de livros já está disponível para uso.
 
-Para facilitar, voce pode importar o arquivo ```Book Store.postman_collection.json``` no [Postman](https://postman.com/) para interagir com a aplicacao.
+Para facilitar, você pode importar o arquivo ```Book Store.postman_collection.json``` no [Postman](https://postman.com/) para interagir com a aplicação.
 
 ## Teste
 
