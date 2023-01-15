@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
+use App\Trait\ResponseTrait;
 
 class BookController extends Controller
 {
+    use ResponseTrait;
     /**
      * Display a listing of the resource.
      *
@@ -28,12 +30,8 @@ class BookController extends Controller
     public function store( StoreBookRequest $request )
     {
         $book = Book::create( $request->all() );
-        
-        return response( [
-                             'success' => true,
-                             'message' => 'Successfully registered book!',
-                             'data'    => $book->toArray()
-                         ], 201 );
+    
+        return $this->responseSuccess( $book->toArray(), 201 );
     }
     
     /**
@@ -47,12 +45,8 @@ class BookController extends Controller
     public function update( UpdateBookRequest $request, Book $book )
     {
         $book->update( $request->all() );
-        
-        return response( [
-                             'success' => true,
-                             'message' => 'Successfully updated book!',
-                             'data'    => $book->toArray()
-                         ] );
+    
+        return $this->responseSuccess( $book->toArray() );
     }
     
     /**
@@ -65,11 +59,7 @@ class BookController extends Controller
     public function destroy( Book $book )
     {
         $book->delete();
-        
-        return response( [
-                             'success' => true,
-                             'message' => 'Successfully deleted book!',
-                             'data'    => []
-                         ] );
+    
+        return $this->responseSuccess();
     }
 }

@@ -82,7 +82,7 @@ class BookTest extends TestCase
         $response->assertStatus( 201 );
         $response->assertJson( [
                                    'success' => true,
-                                   'message' => 'Successfully registered book!',
+                                   'message' => 'Request processed successfully!',
                                    'data'    => [
                                        "name"  => $data[ 'name' ],
                                        "isbn"  => $data[ 'isbn' ],
@@ -161,7 +161,7 @@ class BookTest extends TestCase
         $data[ 'id' ] = $book->id;
         $response->assertJson( [
                                    'success' => true,
-                                   'message' => "Successfully updated book!",
+                                   'message' => "Request processed successfully!",
                                    'data'    => $data
                                ] );
     }
@@ -179,7 +179,7 @@ class BookTest extends TestCase
         $response->assertOk();
         $response->assertJson( [
                                    'success' => true,
-                                   'message' => "Successfully deleted book!",
+                                   'message' => "Request processed successfully!",
                                    'data'    => []
                                ] );
     }

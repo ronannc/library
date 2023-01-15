@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Trait\ResponseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    use ResponseTrait;
     /**
      * @param \App\Http\Requests\UserRequest $request
      *
@@ -19,12 +21,8 @@ class UserController extends Controller
         $data               = $request->all();
         $data[ 'password' ] = Hash::make( $data[ 'password' ] );
         $user               = User::create( $data );
-        
-        return response( [
-                             'success' => true,
-                             'message' => 'Successfully registered book!',
-                             'data'    => $user->toArray()
-                         ], 201 );
+    
+        return $this->responseSuccess( $user->toArray(), 201 );
     }
     
     /**
@@ -42,7 +40,7 @@ class UserController extends Controller
                                  'data'    => []
                              ], 400 );
         }
-        
-        return response( [ 'token' => $user->createToken( 'token_api' )->plainTextToken ], 200 );
+    
+        return $this->responseSuccess( [ 'token' => $user->createToken( 'token_api' )->plainTextToken ] );
     }
 }
