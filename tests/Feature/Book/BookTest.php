@@ -3,7 +3,9 @@
 namespace Book;
 
 use App\Models\Book;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 /**
@@ -20,6 +22,9 @@ class BookTest extends TestCase
      */
     public function ListBookTest()
     {
+        Sanctum::actingAs(
+            User::factory()->create()
+        );
         Book::factory()->count( 10 )->create();
         $response = $this->get( $this->url . "/api/books" );
         $response->assertOk();
@@ -70,6 +75,9 @@ class BookTest extends TestCase
      */
     public function StoreSuccessBookTest( $data )
     {
+        Sanctum::actingAs(
+            User::factory()->create()
+        );
         $response = $this->post( $this->url . "/api/books", $data );
         $response->assertStatus( 201 );
         $response->assertJson( [
@@ -127,6 +135,9 @@ class BookTest extends TestCase
      */
     public function StoreFailBookTest( $data )
     {
+        Sanctum::actingAs(
+            User::factory()->create()
+        );
         $response = $this->post( $this->url . "/api/books", $data );
         $response->assertStatus( 400 );
         $response->assertJsonFragment( [
@@ -141,6 +152,9 @@ class BookTest extends TestCase
      */
     public function UpdateBookTest( $data )
     {
+        Sanctum::actingAs(
+            User::factory()->create()
+        );
         $book     = Book::factory()->create();
         $response = $this->put( $this->url . "/api/books/$book->id", $data );
         $response->assertOk();
@@ -157,6 +171,9 @@ class BookTest extends TestCase
      */
     public function DeleteBookTest()
     {
+        Sanctum::actingAs(
+            User::factory()->create()
+        );
         $book     = Book::factory()->create();
         $response = $this->delete( $this->url . "/api/books/$book->id" );
         $response->assertOk();
