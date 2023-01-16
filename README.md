@@ -1,12 +1,15 @@
 ## Sobre o Projeto
 
-Projeto simples que implementa um CRUD de Livros. Foi feito usando Laravel Sail, uma interface de linha de comando leve para interagir com o ambiente de
-desenvolvimento Docker padrão e Laravel Sanctum para autenticação.
+Projeto simples que implementa um CRUD de Livros.
 
 ## Como executar
 
 - Clone o projeto: https://github.com/ronannc/library.git
-- Dentro do diretório **library** executa o comando: ```./vendor/bin/sail up -d```
+- Dentro do diretório **library** executa o comando: ```docker-compose build app```
+- Ainda dentro do diretorio execute: ```docker-compose up -d```
+- E tambem: ```docker-compose exec app composer install```
+- E logo em seguida: ```docker-compose exec app php artisan key:generate```
+- Para migrar o banco: ```docker-compose exec app php artisan migrate```
 
 Pronto, agora a API CRUD de livros já está disponível para uso.
 
@@ -14,7 +17,7 @@ Para facilitar, você pode importar o arquivo ```Book Store.postman_collection.j
 
 ## Teste
 
-Para executar os teste automatizados basta rodar o comando ```./vendor/bin/sail composer test```
+Para executar os teste automatizados basta rodar o comando ```docker-compose exec app composer test```
 
 ## License
 
