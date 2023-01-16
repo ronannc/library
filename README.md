@@ -8,6 +8,7 @@ Projeto simples que implementa um CRUD de Livros.
 - Dentro do diretório **library** executa o comando: ```docker-compose build app```
 - Ainda dentro do diretorio execute: ```docker-compose up -d```
 - E tambem: ```docker-compose exec app composer install```
+- Crie o arquivo .env a partir do .env.example
 - E logo em seguida: ```docker-compose exec app php artisan key:generate```
 - Para migrar o banco: ```docker-compose exec app php artisan migrate```
 
